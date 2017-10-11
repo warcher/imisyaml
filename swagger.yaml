@@ -1,0 +1,1028 @@
+swagger: '2.0'
+info:
+  description: '![](https://www.advsol.com/ASI/images/NewSite/Logos/asi_logo_mobile.png)'
+  version: 1.0.0
+  title: iMIS REST API
+  contact: {}
+host: 4a62155d.ngrok.io
+basePath: /imismain10
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /Token:
+    post:
+      summary: Request token
+      consumes: []
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          default: application/x-www-form-urlencoded
+          x-example: application/x-www-form-urlencoded
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: string
+            default: grant_type=password&username=WARCHER&password=WARCHER1
+      responses:
+        '200':
+          description: Status 200
+  /api/party:
+    get:
+      summary: Find party using operator
+      parameters:
+        - name: firstname
+          in: query
+          required: false
+          type: string
+          x-example: 'startswith:rand'
+        - name: lastname
+          in: query
+          required: false
+          type: string
+          x-example: 'startswith:mcm'
+        - name: Content-Type
+          in: header
+          required: false
+          type: string
+          x-example: application/x-www-form-urlencoded
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          default: '${ "Authorization" }'
+      responses:
+        '200':
+          description: Status 200
+          schema:
+            type: object
+            description: |-
+              ```
+              {
+                  "$type": "Asi.Soa.Core.DataContracts.PagedResult`1[[Asi.Soa.Membership.DataContracts.PartyData, Asi.Contracts]], Asi.Contracts",
+                  "Items": {
+                      "$type": "System.Collections.Generic.List`1[[Asi.Soa.Membership.DataContracts.PartyData, Asi.Contracts]], mscorlib",
+                      "$values": [
+                          {
+                              "$type": "Asi.Soa.Membership.DataContracts.ComboPartyData, Asi.Contracts",
+                              "Gender": 0,
+                              "OrganizationName": "Acme, Inc.",
+                              "PersonName": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PersonNameData, Asi.Contracts",
+                                  "FirstName": "Randall",
+                                  "InformalName": "Randy",
+                                  "LastName": "McMann",
+                                  "MiddleName": "K.",
+                                  "NamePrefix": "Mr.",
+                                  "FullName": "Mr. Randall K. McMann"
+                              },
+                              "PrimaryOrganization": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PrimaryOrganizationInformationData, Asi.Contracts",
+                                  "Name": "Acme, Inc."
+                              },
+                              "AdditionalAttributes": {
+                                  "$type": "Asi.Soa.Core.DataContracts.GenericPropertyDataCollection, Asi.Contracts",
+                                  "$values": [
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                                          "Name": "CustomerTypeDescription",
+                                          "Value": "Company Member"
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                                          "Name": "IsMemberRecord",
+                                          "Value": {
+                                              "$type": "System.Boolean",
+                                              "$value": true
+                                          }
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                                          "Name": "CustomerTypeCode",
+                                          "Value": "CM"
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                                          "Name": "IsMember",
+                                          "Value": {
+                                              "$type": "System.Boolean",
+                                              "$value": true
+                                          }
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                                          "Name": "IsInactiveMember",
+                                          "Value": {
+                                              "$type": "System.Boolean",
+                                              "$value": false
+                                          }
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                                          "Name": "AllowAdvanceRenewal",
+                                          "Value": {
+                                              "$type": "System.Boolean",
+                                              "$value": true
+                                          }
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                                          "Name": "JoinDate",
+                                          "Value": "1984-07-15T00:00:00"
+                                      }
+                                  ]
+                              },
+                              "Addresses": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.FullAddressDataCollection, Asi.Contracts",
+                                  "$values": [
+                                      {
+                                          "$type": "Asi.Soa.Membership.DataContracts.FullAddressData, Asi.Contracts",
+                                          "AdditionalLines": {
+                                              "$type": "Asi.Soa.Membership.DataContracts.AddressLineDataCollection, Asi.Contracts",
+                                              "$values": []
+                                          },
+                                          "Address": {
+                                              "$type": "Asi.Soa.Membership.DataContracts.AddressData, Asi.Contracts",
+                                              "AddressId": "49",
+                                              "AddressLines": {
+                                                  "$type": "Asi.Soa.Membership.DataContracts.AddressLineDataCollection, Asi.Contracts",
+                                                  "$values": [
+                                                      "1700 Atlantic Avenue"
+                                                  ]
+                                              },
+                                              "CityName": "Dallas",
+                                              "CountryCode": "US",
+                                              "CountryName": "United States",
+                                              "CountrySubEntityCode": "TX",
+                                              "CountrySubEntityName": "Texas",
+                                              "FullAddress": "1700 Atlantic Avenue\rDallas, TX  75201-4620\rUNITED STATES",
+                                              "PostalCode": "75201-4620",
+                                              "VerificationStatus": 0
+                                          },
+                                          "AddresseeText": "Acme, Inc.\r\n1700 Atlantic Avenue\rDallas, TX  75201-4620\rUNITED STATES",
+                                          "AddressPurpose": "Address",
+                                          "CommunicationPreferences": {
+                                              "$type": "Asi.Soa.Membership.DataContracts.CommunicationPreferenceDataCollection, Asi.Contracts",
+                                              "$values": [
+                                                  {
+                                                      "$type": "Asi.Soa.Membership.DataContracts.CommunicationPreferenceData, Asi.Contracts",
+                                                      "Reason": "default"
+                                                  },
+                                                  {
+                                                      "$type": "Asi.Soa.Membership.DataContracts.CommunicationPreferenceData, Asi.Contracts",
+                                                      "Reason": "mail"
+                                                  },
+                                                  {
+                                                      "$type": "Asi.Soa.Membership.DataContracts.CommunicationPreferenceData, Asi.Contracts",
+                                                      "Reason": "bill"
+                                                  },
+                                                  {
+                                                      "$type": "Asi.Soa.Membership.DataContracts.CommunicationPreferenceData, Asi.Contracts",
+                                                      "Reason": "ship"
+                                                  }
+                                              ]
+                                          },
+                                          "FullAddressId": "49",
+                                          "Note": "P.S.I. Code 9450",
+                                          "Phone": "(214) 987-8765",
+                                          "Salutation": {
+                                              "$type": "Asi.Soa.Membership.DataContracts.PartySalutationData, Asi.Contracts",
+                                              "SalutationMethod": {
+                                                  "$type": "Asi.Soa.Membership.DataContracts.PartySalutationMethodSummaryData, Asi.Contracts",
+                                                  "PartySalutationMethodId": "main"
+                                              },
+                                              "Text": "Acme, Inc."
+                                          },
+                                          "DisplayName": "Rand",
+                                          "DisplayOrganizationName": "Acme, Inc."
+                                      }
+                                  ]
+                              },
+                              "AlternateIds": {
+                                  "$type": "Asi.Soa.Core.DataContracts.AlternateIdDataCollection, Asi.Contracts",
+                                  "$values": [
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.AlternateIdData, Asi.Contracts",
+                                          "Id": "159",
+                                          "IdType": "Id"
+                                      }
+                                  ]
+                              },
+                              "Emails": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.EmailDataCollection, Asi.Contracts",
+                                  "$values": [
+                                      {
+                                          "$type": "Asi.Soa.Membership.DataContracts.EmailData, Asi.Contracts",
+                                          "Address": "warcher@imisdemo.com",
+                                          "EmailType": "_Primary",
+                                          "IsPrimary": true
+                                      }
+                                  ]
+                              },
+                              "FinancialInformation": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.FinancialInformationData, Asi.Contracts"
+                              },
+                              "Phones": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PhoneDataCollection, Asi.Contracts",
+                                  "$values": [
+                                      {
+                                          "$type": "Asi.Soa.Membership.DataContracts.PhoneData, Asi.Contracts",
+                                          "Number": "(214) 987-8765",
+                                          "PhoneType": "_Work Phone"
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Membership.DataContracts.PhoneData, Asi.Contracts",
+                                          "Number": "(599)286-6711",
+                                          "PhoneType": "Mobile"
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Membership.DataContracts.PhoneData, Asi.Contracts",
+                                          "Number": "(214) 987-8765",
+                                          "PhoneType": "Address"
+                                      }
+                                  ]
+                              },
+                              "Salutations": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PartySalutationDataCollection, Asi.Contracts",
+                                  "$values": [
+                                      {
+                                          "$type": "Asi.Soa.Membership.DataContracts.PartySalutationData, Asi.Contracts",
+                                          "SalutationId": "159",
+                                          "SalutationMethod": {
+                                              "$type": "Asi.Soa.Membership.DataContracts.PartySalutationMethodSummaryData, Asi.Contracts",
+                                              "PartySalutationMethodId": "LIST_AS"
+                                          },
+                                          "Text": "Mr. Randall K. McMann"
+                                      }
+                                  ]
+                              },
+                              "SocialNetworks": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PartySocialNetworkDataCollection, Asi.Contracts",
+                                  "$values": []
+                              },
+                              "CommunicationTypePreferences": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PartyCommunicationTypePreferenceDataCollection, Asi.Contracts",
+                                  "$values": []
+                              },
+                              "SortIsOverridden": false,
+                              "UpdateInformation": {
+                                  "$type": "Asi.Soa.Core.DataContracts.EntityUpdateInformationData, Asi.Contracts",
+                                  "CreatedBy": "ADMINISTRATOR",
+                                  "CreatedOn": "2008-06-09T08:46:01.917",
+                                  "UpdatedBy": "ADMINISTRATOR",
+                                  "UpdatedOn": "2008-06-09T08:46:01.917"
+                              },
+                              "PartyId": "159",
+                              "Id": "159",
+                              "UniformId": "6508a027-2062-433c-9b4e-56b1f28bb2ef",
+                              "Status": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PartyStatusData, Asi.Contracts",
+                                  "PartyStatusId": "A",
+                                  "Name": "Active",
+                                  "Description": "Active"
+                              },
+                              "Name": "Acme, Inc.",
+                              "Sort": "Acme, Inc."
+                          },
+                          {
+                              "$type": "Asi.Soa.Membership.DataContracts.PersonData, Asi.Contracts",
+                              "PersonName": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PersonNameData, Asi.Contracts",
+                                  "FirstName": "Joseph",
+                                  "InformalName": "Joe",
+                                  "LastName": "McMann",
+                                  "NamePrefix": "Mr.",
+                                  "FullName": "Mr. Joseph McMann"
+                              },
+                              "PrimaryOrganization": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PrimaryOrganizationInformationData, Asi.Contracts",
+                                  "OrganizationPartyId": "19797",
+                                  "Name": "Accessible Solutions Consulting"
+                              },
+                              "AdditionalAttributes": {
+                                  "$type": "Asi.Soa.Core.DataContracts.GenericPropertyDataCollection, Asi.Contracts",
+                                  "$values": [
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                                          "Name": "CustomerTypeDescription",
+                                          "Value": "Regular Member"
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                                          "Name": "IsMemberRecord",
+                                          "Value": {
+                                              "$type": "System.Boolean",
+                                              "$value": true
+                                          }
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                                          "Name": "CustomerTypeCode",
+                                          "Value": "M"
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                                          "Name": "IsMember",
+                                          "Value": {
+                                              "$type": "System.Boolean",
+                                              "$value": true
+                                          }
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                                          "Name": "IsInactiveMember",
+                                          "Value": {
+                                              "$type": "System.Boolean",
+                                              "$value": false
+                                          }
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                                          "Name": "AllowAdvanceRenewal",
+                                          "Value": {
+                                              "$type": "System.Boolean",
+                                              "$value": true
+                                          }
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                                          "Name": "JoinDate",
+                                          "Value": "1984-07-15T00:00:00"
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                                          "Name": "MajorKey",
+                                          "Value": "159"
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                                          "Name": "ParentPartyId",
+                                          "Value": "19797"
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                                          "Name": "BillingCategory",
+                                          "Value": "1"
+                                      }
+                                  ]
+                              },
+                              "Addresses": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.FullAddressDataCollection, Asi.Contracts",
+                                  "$values": [
+                                      {
+                                          "$type": "Asi.Soa.Membership.DataContracts.FullAddressData, Asi.Contracts",
+                                          "AdditionalLines": {
+                                              "$type": "Asi.Soa.Membership.DataContracts.AddressLineDataCollection, Asi.Contracts",
+                                              "$values": []
+                                          },
+                                          "Address": {
+                                              "$type": "Asi.Soa.Membership.DataContracts.AddressData, Asi.Contracts",
+                                              "AddressId": "11954",
+                                              "AddressLines": {
+                                                  "$type": "Asi.Soa.Membership.DataContracts.AddressLineDataCollection, Asi.Contracts",
+                                                  "$values": [
+                                                      "2050 California Dr"
+                                                  ]
+                                              },
+                                              "CityName": "Ripley",
+                                              "CountryCode": "US",
+                                              "CountryName": "United States",
+                                              "CountrySubEntityCode": "WV",
+                                              "CountrySubEntityName": "West Virginia",
+                                              "FullAddress": "2050 California Dr\rRipley, WV  25271\rUNITED STATES",
+                                              "PostalCode": "25271",
+                                              "VerificationStatus": 0
+                                          },
+                                          "AddresseeText": "Mr. Joseph McMann\r\n2050 California Dr\rRipley, WV  25271\rUNITED STATES",
+                                          "AddressPurpose": "Address",
+                                          "CommunicationPreferences": {
+                                              "$type": "Asi.Soa.Membership.DataContracts.CommunicationPreferenceDataCollection, Asi.Contracts",
+                                              "$values": [
+                                                  {
+                                                      "$type": "Asi.Soa.Membership.DataContracts.CommunicationPreferenceData, Asi.Contracts",
+                                                      "Reason": "default"
+                                                  },
+                                                  {
+                                                      "$type": "Asi.Soa.Membership.DataContracts.CommunicationPreferenceData, Asi.Contracts",
+                                                      "Reason": "mail"
+                                                  },
+                                                  {
+                                                      "$type": "Asi.Soa.Membership.DataContracts.CommunicationPreferenceData, Asi.Contracts",
+                                                      "Reason": "bill"
+                                                  },
+                                                  {
+                                                      "$type": "Asi.Soa.Membership.DataContracts.CommunicationPreferenceData, Asi.Contracts",
+                                                      "Reason": "ship"
+                                                  }
+                                              ]
+                                          },
+                                          "Email": "jmcmann@imisdemo.com",
+                                          "FullAddressId": "11954",
+                                          "Phone": "(214) 987-8765",
+                                          "Salutation": {
+                                              "$type": "Asi.Soa.Membership.DataContracts.PartySalutationData, Asi.Contracts",
+                                              "SalutationMethod": {
+                                                  "$type": "Asi.Soa.Membership.DataContracts.PartySalutationMethodSummaryData, Asi.Contracts",
+                                                  "PartySalutationMethodId": "main"
+                                              },
+                                              "Text": "Mr. Joseph McMann"
+                                          },
+                                          "DisplayName": "Joe",
+                                          "DisplayOrganizationName": "Accessible Solutions Consulting"
+                                      }
+                                  ]
+                              },
+                              "AlternateIds": {
+                                  "$type": "Asi.Soa.Core.DataContracts.AlternateIdDataCollection, Asi.Contracts",
+                                  "$values": [
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.AlternateIdData, Asi.Contracts",
+                                          "Id": "159",
+                                          "IdType": "MajorKey"
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Core.DataContracts.AlternateIdData, Asi.Contracts",
+                                          "Id": "21562",
+                                          "IdType": "Id"
+                                      }
+                                  ]
+                              },
+                              "Emails": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.EmailDataCollection, Asi.Contracts",
+                                  "$values": [
+                                      {
+                                          "$type": "Asi.Soa.Membership.DataContracts.EmailData, Asi.Contracts",
+                                          "Address": "jmcmann@imisdemo.com",
+                                          "EmailType": "Address"
+                                      }
+                                  ]
+                              },
+                              "FinancialInformation": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.FinancialInformationData, Asi.Contracts"
+                              },
+                              "Phones": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PhoneDataCollection, Asi.Contracts",
+                                  "$values": [
+                                      {
+                                          "$type": "Asi.Soa.Membership.DataContracts.PhoneData, Asi.Contracts",
+                                          "Number": "(214) 987-8765",
+                                          "PhoneType": "_Work Phone"
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Membership.DataContracts.PhoneData, Asi.Contracts",
+                                          "Number": "(713)627-0398",
+                                          "PhoneType": "Mobile"
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Membership.DataContracts.PhoneData, Asi.Contracts",
+                                          "Number": "(214) 987-8765",
+                                          "PhoneType": "Address"
+                                      }
+                                  ]
+                              },
+                              "Salutations": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PartySalutationDataCollection, Asi.Contracts",
+                                  "$values": [
+                                      {
+                                          "$type": "Asi.Soa.Membership.DataContracts.PartySalutationData, Asi.Contracts",
+                                          "SalutationId": "21562",
+                                          "SalutationMethod": {
+                                              "$type": "Asi.Soa.Membership.DataContracts.PartySalutationMethodSummaryData, Asi.Contracts",
+                                              "PartySalutationMethodId": "LIST_AS"
+                                          },
+                                          "Text": "Mr. Randall K. McMann"
+                                      }
+                                  ]
+                              },
+                              "SocialNetworks": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PartySocialNetworkDataCollection, Asi.Contracts",
+                                  "$values": []
+                              },
+                              "CommunicationTypePreferences": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PartyCommunicationTypePreferenceDataCollection, Asi.Contracts",
+                                  "$values": []
+                              },
+                              "SortIsOverridden": false,
+                              "UpdateInformation": {
+                                  "$type": "Asi.Soa.Core.DataContracts.EntityUpdateInformationData, Asi.Contracts",
+                                  "CreatedBy": "GREGC",
+                                  "CreatedOn": "2012-04-08T00:06:54.263",
+                                  "UpdatedBy": "BSCHRADER",
+                                  "UpdatedOn": "2012-11-06T17:14:31.18"
+                              },
+                              "PartyId": "21562",
+                              "Id": "21562",
+                              "UniformId": "9f92d030-8b88-435c-980c-98bb49a61aff",
+                              "Status": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PartyStatusData, Asi.Contracts",
+                                  "PartyStatusId": "A",
+                                  "Name": "Active",
+                                  "Description": "Active"
+                              },
+                              "Name": "Mr. Joseph McMann",
+                              "Sort": "McMann, Joseph"
+                          }
+                      ]
+                  },
+                  "Offset": 0,
+                  "Limit": 100,
+                  "Count": 2,
+                  "TotalCount": 0,
+                  "NextPageLink": null,
+                  "HasNext": false,
+                  "NextOffset": 0
+              }
+              ```
+    post:
+      summary: Create new party
+      description: >-
+        If you want to create a person in iMIS, construct a JSON object. In the
+        following example code, we use the "$type" key word in the JSON object
+        that represents our data contract. This is how we interface with SOA and
+        tell SOA what type of object we are creating.
+      consumes: []
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          type: string
+          x-example: application/x-www-form-urlencoded
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              FirstName:
+                type: string
+              InformalName:
+                type: string
+              LastName:
+                type: string
+              NamePrefix:
+                type: string
+            description: |-
+              ```
+              {
+                 "$type": "Asi.Soa.Membership.DataContracts.PersonData, Asi.Soa.Membership.Contracts",
+                 "PersonName": {
+                              "$type": "Asi.Soa.Membership.DataContracts.PersonNameData, Asi.Soa.Membership.Contracts",
+                              "FirstName": "George",
+                              "InformalName": "Gee",
+                              "LastName": "Smith",
+                              "NamePrefix": "Mr."               
+                          },
+              }
+              ```
+      responses:
+        '200':
+          description: Status 200
+          schema:
+            type: string
+  '/api/party/{id}':
+    get:
+      summary: Find party by Id
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          type: string
+          x-example: application/x-www-form-urlencoded
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          default: '${ "Authorization" }'
+      responses:
+        '200':
+          description: Status 200
+          schema:
+            type: object
+            description: |-
+              ```
+              {
+                  "$type": "Asi.Soa.Membership.DataContracts.ComboPartyData, Asi.Contracts",
+                  "BirthDate": "1952-11-19T00:00:00",
+                  "Gender": 0,
+                  "OrganizationName": "Prodigy Makers International",
+                  "PersonName": {
+                      "$type": "Asi.Soa.Membership.DataContracts.PersonNameData, Asi.Contracts",
+                      "FirstName": "Douglas",
+                      "InformalName": "Doug",
+                      "LastName": "Hunt",
+                      "MiddleName": "A.",
+                      "NamePrefix": "Mr.",
+                      "NameSuffix": "Jr.",
+                      "FullName": "Mr. Douglas A. Hunt, Jr."
+                  },
+                  "PrimaryOrganization": {
+                      "$type": "Asi.Soa.Membership.DataContracts.PrimaryOrganizationInformationData, Asi.Contracts",
+                      "Name": "Prodigy Makers International",
+                      "Title": "President"
+                  },
+                  "AdditionalAttributes": {
+                      "$type": "Asi.Soa.Core.DataContracts.GenericPropertyDataCollection, Asi.Contracts",
+                      "$values": [
+                          {
+                              "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                              "Name": "CustomerTypeDescription",
+                              "Value": "Company Member"
+                          },
+                          {
+                              "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                              "Name": "IsMemberRecord",
+                              "Value": {
+                                  "$type": "System.Boolean",
+                                  "$value": true
+                              }
+                          },
+                          {
+                              "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                              "Name": "CustomerTypeCode",
+                              "Value": "CM"
+                          },
+                          {
+                              "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                              "Name": "IsMember",
+                              "Value": {
+                                  "$type": "System.Boolean",
+                                  "$value": true
+                              }
+                          },
+                          {
+                              "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                              "Name": "IsInactiveMember",
+                              "Value": {
+                                  "$type": "System.Boolean",
+                                  "$value": false
+                              }
+                          },
+                          {
+                              "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                              "Name": "AllowAdvanceRenewal",
+                              "Value": {
+                                  "$type": "System.Boolean",
+                                  "$value": false
+                              }
+                          },
+                          {
+                              "$type": "Asi.Soa.Core.DataContracts.GenericPropertyData, Asi.Contracts",
+                              "Name": "JoinDate",
+                              "Value": "1967-11-28T00:00:00"
+                          }
+                      ]
+                  },
+                  "Addresses": {
+                      "$type": "Asi.Soa.Membership.DataContracts.FullAddressDataCollection, Asi.Contracts",
+                      "$values": [
+                          {
+                              "$type": "Asi.Soa.Membership.DataContracts.FullAddressData, Asi.Contracts",
+                              "AdditionalLines": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.AddressLineDataCollection, Asi.Contracts",
+                                  "$values": []
+                              },
+                              "Address": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.AddressData, Asi.Contracts",
+                                  "AddressId": "1",
+                                  "AddressLines": {
+                                      "$type": "Asi.Soa.Membership.DataContracts.AddressLineDataCollection, Asi.Contracts",
+                                      "$values": [
+                                          "P.O. Box 4564"
+                                      ]
+                                  },
+                                  "CityName": "Newark",
+                                  "CountryCode": "US",
+                                  "CountryName": "United States",
+                                  "CountrySubEntityCode": "NJ",
+                                  "CountrySubEntityName": "New Jersey",
+                                  "FullAddress": "P.O. Box 4564\rNewark, NJ  07107-2564\rUNITED STATES",
+                                  "PostalCode": "07107-2564",
+                                  "VerificationStatus": 0
+                              },
+                              "AddresseeText": "Prodigy Makers International\r\nP.O. Box 4564\rNewark, NJ  07107-2564\rUNITED STATES",
+                              "AddressPurpose": "Address",
+                              "CommunicationPreferences": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.CommunicationPreferenceDataCollection, Asi.Contracts",
+                                  "$values": [
+                                      {
+                                          "$type": "Asi.Soa.Membership.DataContracts.CommunicationPreferenceData, Asi.Contracts",
+                                          "Reason": "default"
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Membership.DataContracts.CommunicationPreferenceData, Asi.Contracts",
+                                          "Reason": "mail"
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Membership.DataContracts.CommunicationPreferenceData, Asi.Contracts",
+                                          "Reason": "bill"
+                                      },
+                                      {
+                                          "$type": "Asi.Soa.Membership.DataContracts.CommunicationPreferenceData, Asi.Contracts",
+                                          "Reason": "ship"
+                                      }
+                                  ]
+                              },
+                              "Email": "prodigymakers@imisdemo.com",
+                              "Fax": "(201) 898-4255",
+                              "FullAddressId": "1",
+                              "Note": "P.S.I. Code 9450",
+                              "Phone": "(201) 898-9000",
+                              "Salutation": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PartySalutationData, Asi.Contracts",
+                                  "SalutationMethod": {
+                                      "$type": "Asi.Soa.Membership.DataContracts.PartySalutationMethodSummaryData, Asi.Contracts",
+                                      "PartySalutationMethodId": "main"
+                                  },
+                                  "Text": "Prodigy Makers International"
+                              },
+                              "DisplayName": "Doug",
+                              "DisplayOrganizationTitle": "President",
+                              "DisplayOrganizationName": "Prodigy Makers International"
+                          },
+                          {
+                              "$type": "Asi.Soa.Membership.DataContracts.FullAddressData, Asi.Contracts",
+                              "AdditionalLines": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.AddressLineDataCollection, Asi.Contracts",
+                                  "$values": []
+                              },
+                              "Address": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.AddressData, Asi.Contracts",
+                                  "AddressId": "2",
+                                  "AddressLines": {
+                                      "$type": "Asi.Soa.Membership.DataContracts.AddressLineDataCollection, Asi.Contracts",
+                                      "$values": [
+                                          "115 Franklin Avenue",
+                                          "Suite 256"
+                                      ]
+                                  },
+                                  "Barcode": "/710101/",
+                                  "CityName": "Newark",
+                                  "CountrySubEntityCode": "NJ",
+                                  "FullAddress": "115 Franklin Avenue\rSuite 256\rNewark, NJ  71010",
+                                  "PostalCode": "71010",
+                                  "VerificationStatus": 0
+                              },
+                              "AddresseeText": "Prodigy Makers International\r\n115 Franklin Avenue\rSuite 256\rNewark, NJ  71010",
+                              "AddressPurpose": "Street Address",
+                              "CommunicationPreferences": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.CommunicationPreferenceDataCollection, Asi.Contracts",
+                                  "$values": []
+                              },
+                              "FullAddressId": "2",
+                              "Salutation": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PartySalutationData, Asi.Contracts",
+                                  "SalutationMethod": {
+                                      "$type": "Asi.Soa.Membership.DataContracts.PartySalutationMethodSummaryData, Asi.Contracts",
+                                      "PartySalutationMethodId": "main"
+                                  },
+                                  "Text": "Prodigy Makers International"
+                              },
+                              "DisplayName": "Doug",
+                              "DisplayOrganizationTitle": "President",
+                              "DisplayOrganizationName": "Prodigy Makers International"
+                          },
+                          {
+                              "$type": "Asi.Soa.Membership.DataContracts.FullAddressData, Asi.Contracts",
+                              "AdditionalLines": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.AddressLineDataCollection, Asi.Contracts",
+                                  "$values": []
+                              },
+                              "Address": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.AddressData, Asi.Contracts",
+                                  "AddressId": "3",
+                                  "AddressLines": {
+                                      "$type": "Asi.Soa.Membership.DataContracts.AddressLineDataCollection, Asi.Contracts",
+                                      "$values": [
+                                          "2031 Maple"
+                                      ]
+                                  },
+                                  "Barcode": "/882200/",
+                                  "CityName": "Somerville",
+                                  "CountrySubEntityCode": "NJ",
+                                  "FullAddress": "2031 Maple\rSomerville, NJ  88220",
+                                  "PostalCode": "88220",
+                                  "VerificationStatus": 0
+                              },
+                              "AddresseeText": "Prodigy Makers International\r\n2031 Maple\rSomerville, NJ  88220",
+                              "AddressPurpose": "Home Address",
+                              "CommunicationPreferences": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.CommunicationPreferenceDataCollection, Asi.Contracts",
+                                  "$values": []
+                              },
+                              "FullAddressId": "3",
+                              "Salutation": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PartySalutationData, Asi.Contracts",
+                                  "SalutationMethod": {
+                                      "$type": "Asi.Soa.Membership.DataContracts.PartySalutationMethodSummaryData, Asi.Contracts",
+                                      "PartySalutationMethodId": "main"
+                                  },
+                                  "Text": "Prodigy Makers International"
+                              },
+                              "DisplayName": "Doug",
+                              "DisplayOrganizationTitle": "President",
+                              "DisplayOrganizationName": "Prodigy Makers International"
+                          }
+                      ]
+                  },
+                  "AlternateIds": {
+                      "$type": "Asi.Soa.Core.DataContracts.AlternateIdDataCollection, Asi.Contracts",
+                      "$values": [
+                          {
+                              "$type": "Asi.Soa.Core.DataContracts.AlternateIdData, Asi.Contracts",
+                              "Id": "101",
+                              "IdType": "Id"
+                          }
+                      ]
+                  },
+                  "Emails": {
+                      "$type": "Asi.Soa.Membership.DataContracts.EmailDataCollection, Asi.Contracts",
+                      "$values": [
+                          {
+                              "$type": "Asi.Soa.Membership.DataContracts.EmailData, Asi.Contracts",
+                              "Address": "prodigymakers@imisdemo.com",
+                              "EmailType": "Address"
+                          }
+                      ]
+                  },
+                  "FinancialInformation": {
+                      "$type": "Asi.Soa.Membership.DataContracts.FinancialInformationData, Asi.Contracts"
+                  },
+                  "Phones": {
+                      "$type": "Asi.Soa.Membership.DataContracts.PhoneDataCollection, Asi.Contracts",
+                      "$values": [
+                          {
+                              "$type": "Asi.Soa.Membership.DataContracts.PhoneData, Asi.Contracts",
+                              "Number": "(201) 346-9989",
+                              "PhoneType": "_Home Phone"
+                          },
+                          {
+                              "$type": "Asi.Soa.Membership.DataContracts.PhoneData, Asi.Contracts",
+                              "Number": "(201) 898-9000",
+                              "PhoneType": "_Work Phone"
+                          },
+                          {
+                              "$type": "Asi.Soa.Membership.DataContracts.PhoneData, Asi.Contracts",
+                              "Number": "(201) 898-4255",
+                              "PhoneType": "_Fax"
+                          },
+                          {
+                              "$type": "Asi.Soa.Membership.DataContracts.PhoneData, Asi.Contracts",
+                              "Number": "(411)643-5821",
+                              "PhoneType": "Mobile"
+                          },
+                          {
+                              "$type": "Asi.Soa.Membership.DataContracts.PhoneData, Asi.Contracts",
+                              "Number": "(201) 898-9000",
+                              "PhoneType": "Address"
+                          },
+                          {
+                              "$type": "Asi.Soa.Membership.DataContracts.PhoneData, Asi.Contracts",
+                              "Number": "(201) 898-4255",
+                              "PhoneType": "Address Fax"
+                          }
+                      ]
+                  },
+                  "Salutations": {
+                      "$type": "Asi.Soa.Membership.DataContracts.PartySalutationDataCollection, Asi.Contracts",
+                      "$values": [
+                          {
+                              "$type": "Asi.Soa.Membership.DataContracts.PartySalutationData, Asi.Contracts",
+                              "SalutationId": "101",
+                              "SalutationMethod": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PartySalutationMethodSummaryData, Asi.Contracts",
+                                  "PartySalutationMethodId": "INFORMAL"
+                              },
+                              "Text": "Doug"
+                          },
+                          {
+                              "$type": "Asi.Soa.Membership.DataContracts.PartySalutationData, Asi.Contracts",
+                              "SalutationId": "101",
+                              "SalutationMethod": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PartySalutationMethodSummaryData, Asi.Contracts",
+                                  "PartySalutationMethodId": "FORMAL"
+                              },
+                              "Text": "Mr. Douglas A. Hunt"
+                          },
+                          {
+                              "$type": "Asi.Soa.Membership.DataContracts.PartySalutationData, Asi.Contracts",
+                              "SalutationId": "101",
+                              "SalutationMethod": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PartySalutationMethodSummaryData, Asi.Contracts",
+                                  "PartySalutationMethodId": "HUSBAND_WIFE"
+                              },
+                              "Text": "Mr. and Mrs. Douglas A. Hunt, Jr."
+                          },
+                          {
+                              "$type": "Asi.Soa.Membership.DataContracts.PartySalutationData, Asi.Contracts",
+                              "SalutationId": "101",
+                              "SalutationMethod": {
+                                  "$type": "Asi.Soa.Membership.DataContracts.PartySalutationMethodSummaryData, Asi.Contracts",
+                                  "PartySalutationMethodId": "LIST_AS"
+                              },
+                              "Text": "Mr. Douglas A. Hunt, Jr."
+                          }
+                      ]
+                  },
+                  "SocialNetworks": {
+                      "$type": "Asi.Soa.Membership.DataContracts.PartySocialNetworkDataCollection, Asi.Contracts",
+                      "$values": []
+                  },
+                  "CommunicationTypePreferences": {
+                      "$type": "Asi.Soa.Membership.DataContracts.PartyCommunicationTypePreferenceDataCollection, Asi.Contracts",
+                      "$values": []
+                  },
+                  "SortIsOverridden": false,
+                  "UpdateInformation": {
+                      "$type": "Asi.Soa.Core.DataContracts.EntityUpdateInformationData, Asi.Contracts",
+                      "CreatedBy": "ADMINISTRATOR",
+                      "CreatedOn": "2012-11-13T12:52:41.95",
+                      "UpdatedBy": "ADMINISTRATOR",
+                      "UpdatedOn": "2012-11-13T12:52:41.95"
+                  },
+                  "PartyId": "101",
+                  "Id": "101",
+                  "UniformId": "5a8151eb-a601-4230-84d1-fa95f63af7c8",
+                  "Status": {
+                      "$type": "Asi.Soa.Membership.DataContracts.PartyStatusData, Asi.Contracts",
+                      "PartyStatusId": "A",
+                      "Name": "Active",
+                      "Description": "Active"
+                  },
+                  "Name": "Prodigy Makers International",
+                  "Sort": "Prodigy Makers International"
+              }
+              ```
+    put:
+      summary: Update existing party
+      consumes: []
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          type: string
+          x-example: application/x-www-form-urlencoded
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            description: |-
+              ```
+              {
+                 "$type": "Asi.Soa.Membership.DataContracts.PersonData, Asi.Soa.Membership.Contracts",
+                 "PersonName": {
+                              "$type": "Asi.Soa.Membership.DataContracts.PersonNameData, Asi.Soa.Membership.Contracts",
+                              "FirstName": "Jeorge",
+                              "InformalName": "Gee",
+                              "LastName": "Smith",
+                              "NamePrefix": "Mr."               
+                          },
+              }
+              ```
+      responses:
+        '200':
+          description: Status 200
+    delete:
+      summary: Delete existing party
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          type: string
+          x-example: application/x-www-form-urlencoded
+      responses:
+        '200':
+          description: Status 200
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /api/iqa:
+    get:
+      summary: Get query results
+      parameters:
+        - name: QueryName
+          in: query
+          required: true
+          type: string
+          x-example: $/Common/Queries/Search/User/Name
+        - name: Parameter
+          in: query
+          required: false
+          type: string
+          x-example: James%20Schwartz
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          default: '${"BearerToken"}'
+      responses:
+        '200':
+          description: Status 200
